@@ -22,11 +22,14 @@ from rest_framework_swagger.views import get_swagger_view
 
 from carts.viewset import CartViewSet, CartItemViewSet
 from clients.viewset import ClientViewSet
+from orders.viewset import OrderViewSet, OrderCheckoutViewSet
 from products.viewset import ProductViewSet
 
 router = DefaultRouter()
 router.register(r'client', ClientViewSet, basename='ClientViewSet')
 router.register(r'product', ProductViewSet, basename='ProductViewSet')
+router.register(r'order', OrderViewSet, basename='OrderViewSet')
+router.register(r'order_checkout', OrderCheckoutViewSet, basename='OrderCheckoutViewSet')
 router.register(r'cart', CartViewSet, basename='CartViewSet')
 router.register(r'cart_items', CartItemViewSet, basename='CartItemViewSet')
 schema_view = get_swagger_view(title='OrderApi')
