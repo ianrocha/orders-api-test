@@ -12,7 +12,7 @@ class CartCreateSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Cart
-        fields = '__all__'
+        fields = ('client', )
 
 
 class CartItemSerializer(serializers.ModelSerializer):
@@ -63,7 +63,8 @@ class CartItemCreateSerializer(serializers.ModelSerializer):
                 cart_item_obj = cart_item_objs[0]
                 cart_item_obj.quantity = validated_data['quantity']
                 cart_item_obj.save()
-            cart_item_obj = CartItem.objects.create(**validated_data)
+            else:
+                cart_item_obj = CartItem.objects.create(**validated_data)
         return cart_item_obj
 
 

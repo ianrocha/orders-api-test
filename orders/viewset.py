@@ -55,7 +55,7 @@ class OrderCheckoutViewSet(ModelViewSet):
         Block everyone except admin user to create/delete/etc Orders
         Orders can only be cancelled or paid
         """
-        if self.action in ['update']:
+        if self.action in ['update', 'retrieve']:
             self.permission_classes = [permissions.AllowAny, ]
         else:
             self.permission_classes = [permissions.IsAdminUser, ]

@@ -31,7 +31,9 @@ class CartViewSet(ModelViewSet):
         """
         queryset = Cart.objects.cart_active()
         serializer = CartListSerializer(queryset, many=True).data
-        return Response(serializer)
+        if serializer:
+            return Response(serializer)
+        return Response({"message": "No active carts to show"})
 
 
 class CartItemViewSet(ModelViewSet):
