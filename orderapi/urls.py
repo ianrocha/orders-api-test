@@ -21,7 +21,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework.routers import DefaultRouter
 
-from accounts.viewset import LoginView, LogoutView
+from accounts.viewset import LoginView, LogoutView, UserCreateView
 from carts.viewset import CartViewSet, CartItemViewSet
 from clients.viewset import ClientViewSet
 from orders.viewset import OrderViewSet, OrderCheckoutViewSet
@@ -42,6 +42,7 @@ router.register(r'order', OrderViewSet, basename='OrderViewSet')
 router.register(r'order_checkout', OrderCheckoutViewSet, basename='OrderCheckoutViewSet')
 router.register(r'cart', CartViewSet, basename='CartViewSet')
 router.register(r'cart_items', CartItemViewSet, basename='CartItemViewSet')
+router.register(r'accounts', UserCreateView, basename='UserCreateView')
 
 
 urlpatterns = [
