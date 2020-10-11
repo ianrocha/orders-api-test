@@ -17,26 +17,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework.routers import DefaultRouter
-# from rest_framework.documentation import get_docs_view
 
+from accounts.viewset import LoginView, LogoutView
 from carts.viewset import CartViewSet, CartItemViewSet
 from clients.viewset import ClientViewSet
 from orders.viewset import OrderViewSet, OrderCheckoutViewSet
 from products.viewset import ProductViewSet
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Orders API",
-      default_version='v1',
-      description="Orders API"
-   ))
-
-# schema_view = get_docs_view(title='OrderApi',
-#                             description='OrderAPI')
+    openapi.Info(
+        title="Orders API",
+        default_version='v1',
+        description="Orders API"
+    ),
+)
 
 router = DefaultRouter()
 router.register(r'client', ClientViewSet, basename='ClientViewSet')
@@ -50,7 +47,9 @@ router.register(r'cart_items', CartItemViewSet, basename='CartItemViewSet')
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('docs/', schema_view.with_ui('swagger', cache_timeout=0))
+    path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0))
 ]
 
 if settings.DEBUG:
