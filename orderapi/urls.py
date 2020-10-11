@@ -18,7 +18,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-#from rest_framework_swagger.views import get_swagger_view
 from rest_framework.schemas import get_schema_view
 
 from carts.viewset import CartViewSet, CartItemViewSet
@@ -48,4 +47,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
