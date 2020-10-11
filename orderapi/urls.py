@@ -18,12 +18,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from rest_framework_swagger.views import get_swagger_view
+#from rest_framework_swagger.views import get_swagger_view
+from rest_framework.schemas import get_schema_view
 
 from carts.viewset import CartViewSet, CartItemViewSet
 from clients.viewset import ClientViewSet
 from orders.viewset import OrderViewSet, OrderCheckoutViewSet
 from products.viewset import ProductViewSet
+
+
+schema_view = get_schema_view(title='OrderApi',
+                              description='OrderAPI',
+                              version='1.0.0')
 
 router = DefaultRouter()
 router.register(r'client', ClientViewSet, basename='ClientViewSet')
@@ -32,7 +38,7 @@ router.register(r'order', OrderViewSet, basename='OrderViewSet')
 router.register(r'order_checkout', OrderCheckoutViewSet, basename='OrderCheckoutViewSet')
 router.register(r'cart', CartViewSet, basename='CartViewSet')
 router.register(r'cart_items', CartItemViewSet, basename='CartItemViewSet')
-schema_view = get_swagger_view(title='OrderApi')
+
 
 urlpatterns = [
     path('', include(router.urls)),

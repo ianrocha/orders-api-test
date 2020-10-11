@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     'rest_framework',
-    'rest_framework_swagger',
     'django_filters',
 ]
 
