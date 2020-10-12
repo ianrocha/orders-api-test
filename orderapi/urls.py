@@ -42,7 +42,6 @@ router.register(r'order', OrderViewSet, basename='OrderViewSet')
 router.register(r'order_checkout', OrderCheckoutViewSet, basename='OrderCheckoutViewSet')
 router.register(r'cart', CartViewSet, basename='CartViewSet')
 router.register(r'cart_items', CartItemViewSet, basename='CartItemViewSet')
-# router.register(r'accounts', UserCreateView, basename='UserCreateView')
 
 
 urlpatterns = [
