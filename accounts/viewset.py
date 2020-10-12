@@ -10,7 +10,14 @@ class UserCreateView(generics.GenericAPIView):
     serializer_class = UserSerializer
 
     def post(self, request):
-        return Response(status=status.HTTP_200_OK)
+        data = request.data
+        username = data.get("username", None)
+        password = data.get("password", None)
+
+        if username and password:
+            new_user = User.objects.create_user(username=username, password=password)
+            new_user.save()
+            return Response({"message": "User created"}, status=status.HTTP_200_OK)
 
 
 class LoginView(generics.GenericAPIView):

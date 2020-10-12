@@ -12,7 +12,7 @@ class CartViewSet(ModelViewSet):
     serializer_class = CartListSerializer
     queryset = Cart.objects.cart_active()
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = '__all__'
+    filter_fields = ('client', )
 
     def get_permissions(self):
         """
@@ -27,7 +27,7 @@ class CartViewSet(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         """
-        Retrieve a Join of Cart with CartItems
+        Retrieve Carts
         """
         queryset = Cart.objects.cart_active()
         serializer = CartListSerializer(queryset, many=True).data
@@ -38,7 +38,7 @@ class CartViewSet(ModelViewSet):
 
 class CartItemViewSet(ModelViewSet):
     """
-    View for CartItem, it can retrieve or create objects
+    Retrieve or Add CartItem to carts
     """
     serializer_class = CartItemCreateSerializer
     queryset = CartItem.objects.all()
