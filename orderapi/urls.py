@@ -42,14 +42,15 @@ router.register(r'order', OrderViewSet, basename='OrderViewSet')
 router.register(r'order_checkout', OrderCheckoutViewSet, basename='OrderCheckoutViewSet')
 router.register(r'cart', CartViewSet, basename='CartViewSet')
 router.register(r'cart_items', CartItemViewSet, basename='CartItemViewSet')
-router.register(r'accounts', UserCreateView, basename='UserCreateView')
+# router.register(r'accounts', UserCreateView, basename='UserCreateView')
 
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/login/', LoginView.as_view(), name='Login'),
+    path('accounts/logout/', LogoutView.as_view(), name='Logout'),
+    path('accounts/create/', UserCreateView.as_view(), name='CreateUser'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0))
 ]
 

@@ -1,22 +1,16 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from rest_framework import status, views, generics, permissions, viewsets
 from rest_framework.response import Response
 
 from accounts.serializer import UserSerializer
 
 
-class UserCreateView(viewsets.ModelViewSet):
+class UserCreateView(generics.GenericAPIView):
     serializer_class = UserSerializer
 
-    def get_permissions(self):
-        """
-        Block everyone except admin user to list/update/delete/etc other User, but everyone can create a new user
-        """
-        if self.action in ['create']:
-            self.permission_classes = [permissions.AllowAny, ]
-        else:
-            self.permission_classes = [permissions.IsAdminUser, ]
-        return super(self.__class__, self).get_permissions()
+    def post(self, request):
+        return Response(status=status.HTTP_200_OK)
 
 
 class LoginView(generics.GenericAPIView):
